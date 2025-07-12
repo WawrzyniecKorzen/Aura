@@ -34,15 +34,20 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 		AuraAttributeSet->GetMaxManaAttribute()).AddUObject(this, &UOverlayWidgetController::MaxManaChanged);
 
 	//asset tag delegate
-	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
+	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda
+	(
 	[this](const FGameplayTagContainer& AssetTag)
 		{
 		for (FGameplayTag Tag : AssetTag)
 			{
-				const FString Msg = FString::Printf(TEXT("GE Tag: %s"),*Tag.ToString());
-				GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
-
-				FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+				//If tag = A.1 (e.g. Message.HelathPotion)
+				//"A.1".MatchesTag("A") will return True, "A".MatchesTag("A.1") will return False
+				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
+				if (Tag.MatchesTag(MessageTag))
+				{
+					FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+					MessageWidgetRowDelegate.Broadcast(*Row);
+				}
 			}
 		}
 	);
