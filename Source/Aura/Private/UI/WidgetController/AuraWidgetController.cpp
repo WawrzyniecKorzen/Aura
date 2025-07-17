@@ -3,6 +3,8 @@
 
 #include "UI/WidgetController/AuraWidgetController.h"
 
+#include "AbilitySystem/AuraAttributeSet.h"
+
 void UAuraWidgetController::SetWidgetControllerParams(FWidgetControllerParams WCParams)
 {
 	PlayerController = WCParams.PlayerController;
@@ -13,6 +15,7 @@ void UAuraWidgetController::SetWidgetControllerParams(FWidgetControllerParams WC
 
 void UAuraWidgetController::BroadcastInitialValues()
 {
+	
 }
 
 void UAuraWidgetController::BindCallbacksToDependencies()
