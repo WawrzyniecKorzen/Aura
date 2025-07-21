@@ -117,7 +117,7 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 	{
 		if (GetASC())
 		{
-			GetASC()->AbilityInputTagHeld(InputTag);
+			GetASC()->AbilityInputTagReleased(InputTag);
 		}
 		return;
 	}
@@ -166,7 +166,7 @@ void AAuraPlayerController::AbilityInputTegHeld(FGameplayTag InputTag)
 	{
 		if (GetASC())
 		{
-			GetASC()->AbilityInputTagReleased(InputTag);
+			GetASC()->AbilityInputTagHeld(InputTag);
 		}
 	}
 	else
