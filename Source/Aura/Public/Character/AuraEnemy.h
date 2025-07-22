@@ -5,8 +5,11 @@
 #include "CoreMinimal.h"
 #include "Character/AuraCharacterBase.h"
 #include "Interaction/EnemyInterface.h"
+#include "UI/WidgetController/OverlayWidgetController.h"
 #include "AuraEnemy.generated.h"
 
+
+class UWidgetComponent;
 /**
  * 
  */
@@ -30,6 +33,12 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	bool bHighlighted = false;
 
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangeSingature OnHealthChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangeSingature OnMaxHealthChanged;
+	
 protected:
 	void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
@@ -37,6 +46,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	int32 Level = 1;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UWidgetComponent> HealthBar;
 private:
 
 	
