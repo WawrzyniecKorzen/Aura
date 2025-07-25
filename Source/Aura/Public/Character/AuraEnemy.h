@@ -34,11 +34,19 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	bool bHighlighted = false;
 
+	UPROPERTY(BlueprintReadOnly, Category = "Combat")
+	bool bhitReacting = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Combat")
+	float BaseWalkSpeed = 250.f;
+
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangeSingature OnHealthChanged;
 
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangeSingature OnMaxHealthChanged;
+
+	void HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
 	
 protected:
 	void BeginPlay() override;
@@ -53,6 +61,8 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UWidgetComponent> HealthBar;
+
+
 private:
 
 	
