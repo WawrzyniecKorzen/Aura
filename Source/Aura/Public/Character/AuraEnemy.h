@@ -35,7 +35,7 @@ public:
 	bool bHighlighted = false;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Combat")
-	bool bhitReacting = false;
+	bool bHitReacting = false;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Combat")
 	float BaseWalkSpeed = 250.f;

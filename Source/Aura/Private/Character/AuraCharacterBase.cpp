@@ -29,7 +29,7 @@ UAbilitySystemComponent* AAuraCharacterBase::GetAbilitySystemComponent() const
 }
 
 
-UAnimMontage* AAuraCharacterBase::GethitReactMontage_Implementation()
+UAnimMontage* AAuraCharacterBase::GetHitReactMontage_Implementation()
 {
 	return HitReactMontage;
 }
