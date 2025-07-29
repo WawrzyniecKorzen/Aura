@@ -29,6 +29,7 @@ public:
 
 	/*Combat interface*/
 	virtual int32 GetPlayerLevel() override;
+	virtual void Die() override;
 	/*end Combat interface */
 	
 	UPROPERTY(BlueprintReadOnly)
@@ -47,6 +48,9 @@ public:
 	FOnAttributeChangeSingature OnMaxHealthChanged;
 
 	void HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
+	float LifeSpan = 5.f;
 	
 protected:
 	void BeginPlay() override;
