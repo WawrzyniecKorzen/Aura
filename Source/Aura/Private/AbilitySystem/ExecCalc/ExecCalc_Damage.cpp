@@ -4,6 +4,7 @@
 #include "AbilitySystem/ExecCalc/ExecCalc_Damage.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystemComponent.h"
+#include "AuraAbilityTypes.h"
 #include "AuraGameplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
@@ -80,7 +81,12 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	TargetBlockChance = FMath::Max(0.f, TargetBlockChance);
 
 	//if successful block - damage halved
-	const bool bBlocked = FMath::RandRange(1,100) < TargetBlockChance;;
+	const bool bBlocked = FMath::RandRange(1,100) < TargetBlockChance;
+
+	FGameplayEffectContextHandle ContextHandle = Spec.GetContext();
+	UAuraAbilitySystemLibrary::SetIsBlockedHit(ContextHandle, bBlocked);
+	
+	
 	Damage = bBlocked ? Damage/2.f : Damage;
 
 	//Capturing Armor
@@ -123,6 +129,8 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 
 	const float EffectiveCriticalHitChance = FMath::Max(0.f, SourceCriticalHitChance - TargetCriticalHitResistance * CriticalResistanceCoefficient);
 	const bool bCriticalHit = FMath::RandRange(1,100) < EffectiveCriticalHitChance;
+
+	UAuraAbilitySystemLibrary::SetIsCriticalHit(ContextHandle, bCriticalHit);
 
 	Damage = bCriticalHit ? Damage*2.f + SourceCriticalHitDamage : Damage;
 
