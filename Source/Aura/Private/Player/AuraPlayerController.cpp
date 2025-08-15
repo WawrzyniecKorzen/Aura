@@ -112,6 +112,7 @@ void AAuraPlayerController::CursorTrace()
 		if (ThisActor)
 		{
 			ThisActor->HighlightActor();
+			GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("Highlight Actor Set!!"));	
 		}
 	}
 	
