@@ -54,7 +54,6 @@ void AAuraEnemy::PossessedBy(AController* NewController)
 
 void AAuraEnemy::HighlightActor()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Highlight Actor activated"));	
 	bHighlighted = true;
 	GetMesh()->SetRenderCustomDepth(true);
 	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
