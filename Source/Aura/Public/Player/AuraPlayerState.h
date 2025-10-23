@@ -34,7 +34,7 @@ public:
 	
 	FORCEINLINE int32 GetPlayerLevel() const {return Level;}
 	FORCEINLINE int32 GetPlayerXP() const {return XP;}
-
+	
 	void AddToXP(int32 InXP);
 	void AddToLevel(int32 InLevel);
 	
